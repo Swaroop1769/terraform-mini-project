@@ -1,11 +1,21 @@
-The goal of the Project is to create a VPC with 3 Subnets and launch an EC2 instance in first Subnet or use an existing Subnet ID if provided...
+# Terraform Mini Project
 
+This project sets up a VPC with 3 subnets and launches an EC2 instance in the first subnet — or uses an existing subnet ID if provided.
 
-## using Coalesce Function
+## Coalesce Function
 
-- coalesce takes any number of arguments and returns the first one that isn't null or an empty string.
+Uses `coalesce()` to select the first non-null, non-empty value:
+```hcl
+subnet_id = coalesce(var.existing_subnet_id, aws_subnet.subnet_1.id)
+```
 
-'''
-terrafrom apply -var "create_vpc=false" -var "subnet_id=subent-xxxxxxxxx"
-'''
+## Usage
+
+```bash
+terraform init
+terraform fmt
+terraform plan
+terraform apply
+```
+
 
